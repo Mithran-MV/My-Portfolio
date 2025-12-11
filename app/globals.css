@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #06070e;
+  --foreground: #e5e7eb;
+  --muted: #94a3b8;
+  --accent: #2dd4bf;
+  --accent-2: #60a5fa;
+  --grid-color: rgba(255, 255, 255, 0.04);
+}
+
+* {
+  @apply antialiased;
+}
+
+body {
+  color: var(--foreground);
+  background: radial-gradient(circle at 20% 20%, rgba(96, 165, 250, 0.14), transparent 25%),
+    radial-gradient(circle at 80% 0%, rgba(192, 132, 252, 0.14), transparent 28%),
+    radial-gradient(circle at 50% 80%, rgba(45, 212, 191, 0.12), transparent 28%),
+    #06070e;
+  min-height: 100vh;
+  font-family: var(--font-body), sans-serif;
+}
+
+.light body {
+  background: radial-gradient(circle at 15% 10%, rgba(96, 165, 250, 0.12), transparent 26%),
+    radial-gradient(circle at 70% 20%, rgba(45, 212, 191, 0.12), transparent 24%),
+    #f8fafc;
+  color: #0f172a;
+}
+
+.glass-panel {
+  @apply bg-white/5 border border-white/10 backdrop-blur-md;
+}
+
+.light .glass-panel {
+  @apply bg-white/80 border-slate-200 text-slate-800 shadow-sm;
+}
+
+.grid-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(circle at center, black, transparent 75%);
+  opacity: 0.35;
+}
+
+.noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='800' viewBox='0 0 1600 800'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='1600' height='800' filter='url(%23n)' opacity='0.2'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  mix-blend-mode: soft-light;
+}
+
+.light .noise {
+  opacity: 0.2;
+}
+
+.accent-gradient {
+  background: linear-gradient(135deg, #2dd4bf, #60a5fa, #c084fc);
+}
+
+.badge {
+  @apply px-3 py-1 text-xs rounded-full border border-white/10 bg-white/10;
+}
+
+.light .badge {
+  @apply border-slate-200 bg-white text-slate-800;
+}
+
+.card-hover {
+  @apply transition-transform duration-300 ease-out hover:-translate-y-1 hover:shadow-glow-teal;
+}
